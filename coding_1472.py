@@ -59,6 +59,7 @@ def getLargest3Product(nums):
     if len(nums) == 3:
         # the only product that exists
         return np.prod(nums)
+    # initialize empty lists
     top3pos = []
     top2neg = []
     bot3neg = []
