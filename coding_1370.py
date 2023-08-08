@@ -2,6 +2,21 @@
 Given a string which we can delete at most k, return whether you can make a palindrome.
 For example, given 'waterrfetawx' and a k of 2, you could delete f and x to get 'waterretaw'.
 
+----------------------------------
+SOLUTION EXPLANATION 
+----------------------------------
+
+The general solution approach is to drop letters from either end until there is matching strings on the outside and inside. 
+Once a letter is dropped, the innermost non palindrome string with 1 less letter to drop is treated as a new problem 
+until either the remaining text is a palindrome or there are no more letters to drop. 
+
+For the example "waterrfetawx" and the ability to drop 2 letters:
+    x is dropped
+    the mirror substrings of "wate" are dropped
+    The function recurs with the string "rrf" and the ability to drop 1 letter
+    f is dropped
+    "rr" is a palindrome
+
 
 """
 from math import floor
@@ -74,5 +89,16 @@ def canMakePD(text,k):
                 
 #print(isPalindrome('robot'))
 
-test = 'waterrfetawx'
-print(canMakePD(test,2))
+test1 = 'waterrfetawx'
+print(canMakePD(test1,2)) # true
+
+test2 = 'teststring'
+print(canMakePD(test2,3)) # false
+
+print(canMakePD(test2,5)) # true
+# can drop e and ring to form "tstst"
+##### THIS IS FAILING #####
+
+test3 = 'alfimofdfozmila'
+print(canMakePD(test3,2)) # true
+# can drop f and z to form 'alimofdfomila'
